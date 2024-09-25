@@ -15,7 +15,6 @@ LINE Notifyのトークン取得方法
 発行されたトークンをコピーして"main.rb"を開き以下のようしてね
 
 ```
-
 token = "your token here"
 ```
 
