@@ -1,6 +1,7 @@
 # Line Notify Ruby
 
 Line Notifyの送信などの奴をRubyで作ってみた((殴
+
 まだまだ、機能追加するからお楽しみに
 
 ## Function
