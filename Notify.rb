@@ -5,7 +5,7 @@ require 'json'
 class LineNotify
     def initialize(token)
         @token = token
-        self.Check
+        check_token
     end
     
 
@@ -13,13 +13,14 @@ class LineNotify
         Post({"message" => msg, "notificationDisabled" => silent})
     end
 
+    private
 
-    def Check
-        uri = URI.parse("https://notify-api.line.me/api/status")
-        req = Net::HTTP::Get.new(uri)
+    def check_token
+        url = URI.parse("https://notify-api.line.me/api/status")
+        req = Net::HTTP::Get.new(url)
         req["Authorization"] = "Bearer #{@token}"
         
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+        res = Net::HTTP.start(url.hostname, url.port, use_ssl: url.scheme == "https") do |http|
             http.request(req)
         end
         
@@ -32,8 +33,8 @@ class LineNotify
 
 
     def Post(payload, files = {})
-        uri = URI.parse("https://notify-api.line.me/api/notify")
-        req = Net::HTTP::Post.new(uri)
+        url = URI.parse("https://notify-api.line.me/api/notify")
+        req = Net::HTTP::Post.new(url)
         req["Authorization"] = "Bearer #{@token}"
         req.set_form_data(payload)
     
@@ -42,7 +43,7 @@ class LineNotify
           req.set_form([key, file])
         end
     
-        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+        res = Net::HTTP.start(url.hostname, url.port, use_ssl: url.scheme == "https") do |http|
           http.request(req)
         end
     
