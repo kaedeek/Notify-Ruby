@@ -6,7 +6,7 @@ Line Notifyの送信などの奴をRubyで作ってみた((殴
 
 ## Function
 - SendMessage
-- Check
+- check_token
 
 ## Token
 LINE Notifyのトークン取得方法
